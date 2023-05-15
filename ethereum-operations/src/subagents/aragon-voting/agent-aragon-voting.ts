@@ -70,7 +70,7 @@ export async function initialize(
   const startedVotes = (
     await aragonVoting.queryFilter(
       filterStartVote,
-      currentBlock - FIVE_DAYS_BLOCKS,
+      currentBlock - 1,
       currentBlock
     )
   ).map((value: any) => parseInt(String(value.args.voteId)));

@@ -86,7 +86,7 @@ export async function initialize(
     currentBlock - Math.ceil((2 * ONE_WEEK) / SECONDS_PER_SLOT);
   const reportReceivedEvents = await hashConsensus.queryFilter(
     memberReportReceivedFilter,
-    reportReceivedStartBlock,
+    currentBlock - 2,
     currentBlock - 1
   );
 

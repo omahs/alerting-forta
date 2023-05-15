@@ -51,7 +51,7 @@ export async function initialize(
     currentBlock - Math.ceil((48 * ONE_HOUR) / SECONDS_PER_SLOT);
 
   const reportSubmits = await getReportSubmits(
-    block48HoursAgo,
+    currentBlock - 2,
     currentBlock - 1
   );
   let prevReportSubmitTimestamp = 0;
@@ -122,7 +122,7 @@ async function handleReportSubmitted(
     // fetch events history 1 more time to be sure that there were actually no reports during last 25 hours
     // needed to handle situation with the missed TX with prev report
     const reportSubmits = await getReportSubmits(
-      blockEvent.blockNumber - Math.ceil((24 * ONE_HOUR) / SECONDS_PER_SLOT),
+      blockEvent.blockNumber - 2,
       blockEvent.blockNumber - 1
     );
     if (reportSubmits.length > 0) {

@@ -94,7 +94,7 @@ export async function initialize(
     currentBlock - Math.ceil((14 * 24 * 60 * 60) / 12);
   const reportBeaconEvents = await lidoOracle.queryFilter(
     oracleReportBeaconFilter,
-    beaconReportStartBlock,
+    currentBlock - 2,
     currentBlock - 1
   );
 
@@ -118,7 +118,7 @@ export async function initialize(
   const block48HoursAgo = currentBlock - Math.ceil((48 * 60 * 60) / 12);
 
   const oracleReports = await getOracleReports(
-    block48HoursAgo,
+    currentBlock - 2,
     currentBlock - 1
   );
   let prevReport = null;
@@ -234,7 +234,7 @@ async function handleOracleReportDelay(
     // fetch events history 1 more time to be sure that there were actually no reports during last 25 hours
     // needed to handle situation with the missed TX with prev report
     const oracleReports = await getOracleReports(
-      blockEvent.blockNumber - Math.ceil((24 * 60 * 60) / 12),
+      blockEvent.blockNumber - 2,
       blockEvent.blockNumber - 1
     );
     if (oracleReports.length > 0) {

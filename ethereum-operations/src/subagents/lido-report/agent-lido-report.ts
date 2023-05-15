@@ -85,7 +85,7 @@ export async function initialize(
     currentBlock - Math.ceil((2 * ONE_DAY) / SECONDS_PER_SLOT);
   const ethDistributedEvents = await lido.queryFilter(
     lido.filters.ETHDistributed(),
-    block48HoursAgo,
+    currentBlock - 2,
     currentBlock - 1
   );
   if (ethDistributedEvents.length > 1) {

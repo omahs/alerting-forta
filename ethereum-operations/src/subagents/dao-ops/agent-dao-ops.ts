@@ -77,7 +77,7 @@ export async function initialize(
   console.log(`[${name}]`);
   let history = await etherscanProvider.getHistory(
     LIDO_DEPOSIT_SECURITY_ADDRESS,
-    currentBlock - Math.floor((60 * 60 * 72) / 13),
+    currentBlock - 2,
     currentBlock - 1
   );
   const depositorTxTimestamps = history.map((x) =>
